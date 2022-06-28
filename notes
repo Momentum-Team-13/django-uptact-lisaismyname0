@@ -1,0 +1,6 @@
+activate a virtual environment that is specific to your project via the console and $pipenv shell
+
+there is no init in our models because we inherit from models and which has a built in init and we just give it attributes
+
+ex: birthday = models.DateField(null=True, blank=True)
+we need both null = True and blank = True because one is for database and one is for the form. these fields by default are required (its telling the form & database that it's okay for it to be blank)

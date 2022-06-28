@@ -9,9 +9,10 @@
   {% for contact in contacts %}
   <div class="w-33 pa3">
     <h2>{{ contact.name }}</h2>
+    <a href="contacts/<int:pk>"> View Contact</a>
     <h3>{{contact.birthday}}</h3>
 
-    <div class="flex">
+    <div class=" flex">
       <div class="pr2"><i class="icofont-location-pin"></i></div>
       <div>
         {{ contact.address_1 }}<br />

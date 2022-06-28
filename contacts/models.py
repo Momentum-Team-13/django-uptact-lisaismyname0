@@ -11,6 +11,8 @@ class Contact(models.Model):
 
     name = models.CharField(max_length=255)
     birthday = models.DateField(null=True, blank=True)
+    # we need both because one is for database and one is for the form
+    # these fields by default are required (its telling the form & database that it's okay for it to be blank)
     email = models.EmailField(null=True, blank=True)
     phone_number = models.CharField(max_length=11,
                                     validators=[phone_regex],
@@ -21,3 +23,8 @@ class Contact(models.Model):
     city = models.CharField(max_length=255, null=True, blank=True)
     state = USStateField(null=True, blank=True)
     zip_code = USZipCodeField(null=True, blank=True)
+
+
+class Note(models.Model):
+    text_field = models.CharField(max_length=255, null=True, blank=True),
+    time_published = models.DateTimeField(auto_now_add=True)
