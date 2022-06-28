@@ -23,3 +23,4 @@ class Favorite(models.Model):
     contact = models.ForeignKey(
         Contact, on_delete=models.CASCADE, related_name="favorites")
 it will have a user field that will point to particular instanceof user model and there will be a table field that will point to a particular instance of table
+- this example was about connecting two different models together

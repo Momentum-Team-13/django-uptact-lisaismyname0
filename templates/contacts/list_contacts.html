@@ -9,7 +9,7 @@
   {% for contact in contacts %}
   <div class="w-33 pa3">
     <h2>{{ contact.name }}</h2>
-    <a href="contacts/<int:pk>"> View Contact</a>
+    <a href="{% url 'individual_contact' pk=contact.pk %}"> View Contact</a>
     <h3>{{contact.birthday}}</h3>
 
     <div class=" flex">

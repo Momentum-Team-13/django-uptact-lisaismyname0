@@ -1,5 +1,32 @@
-<div>
-    <p>
-        <a href="contacts/<int:pk>/"></a>
-    </p>
+<div>"Hello</div>
+{% block content %}
+<div class="w-33 pa3">
+    <h2>{{ contact.name }}</h2>
+    <h3>{{contact.birthday}}</h3>
+
+    <div class=" flex">
+        <div class="pr2"><i class="icofont-location-pin"></i></div>
+        <div>
+            {{ contact.address_1 }}<br />
+            {% if contact.address_2 %}
+            {{ contact.address_2 }}<br />
+            {% endif %}
+            {{ contact.city }}, {{ contact.state }} {{ contact.zip_code }}
+        </div>
+    </div>
+
+    {% if contact.phone_number %}
+    <div class="flex">
+        <div class="pr2"><i class="icofont-phone"></i></div>
+        <div>{{ contact.phone_number }}</div>
+    </div>
+    {% endif %}
+
+    {% if contact.email %}
+    <div class="flex">
+        <div class="pr2"><i class="icofont-ui-email"></i></div>
+        <div>{{ contact.email }}</div>
+    </div>
+    {% endif %}
 </div>
+{% endblock %}
