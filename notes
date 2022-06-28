@@ -4,3 +4,22 @@ there is no init in our models because we inherit from models and which has a bu
 
 ex: birthday = models.DateField(null=True, blank=True)
 we need both null = True and blank = True because one is for database and one is for the form. these fields by default are required (its telling the form & database that it's okay for it to be blank)
+
+i have a model that has a structure, i told the model which attributes i care about via the form field. we go to the view, the view says i have a form for that... i'm going to render this bit of html with this context which is the additional data that the page needs.
+
+{{form.as_p}} in add_contact.html shows up in the front end 
+- we start by looking at url patterns... we see which page the user is going to enter. the user is going to contacts.add which calls add_contact view 
+
+SQL is the language that the database speaks. 
+
+db.sqlite3 is a file that shows my database but without a tool that can read it, i can't access that file, which is why we might use tools like dbbrowser 
+
+https://github.com/Momentum-Team-13/notes/blob/main/pks_and_fks.md
+this explains the creation of foreign keys and the database 
+
+class Favorite(models.Model):
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="favorites")
+    contact = models.ForeignKey(
+        Contact, on_delete=models.CASCADE, related_name="favorites")
+it will have a user field that will point to particular instanceof user model and there will be a table field that will point to a particular instance of table
