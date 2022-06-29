@@ -29,7 +29,8 @@ urlpatterns = [
          contacts_views.delete_contact,
          name='delete_contact'),
     path('contacts/<int:pk>/', contacts_views.show_contact,
-         name="individual_contact")
+         name="individual_contact"),
+    path('contacts/<int:pk>/', contacts_views.add_note, name="contact_note"),
 ]
 
 if settings.DEBUG:

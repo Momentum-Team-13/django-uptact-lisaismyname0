@@ -67,4 +67,3 @@ def add_note(request, pk):
         return redirect(to="individual_contact", pk=pk)
 
     # edit contact - note?
-    # follow up partsre variables
