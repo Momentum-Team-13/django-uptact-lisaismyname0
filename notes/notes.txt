@@ -37,3 +37,5 @@ def show_contact(request, pk):
     return render(request, "contacts/individual_contact.html", {"contact": contact, "notes": notes})
     # now the context dictionary passes data to the template
     # dont need line 35 because of the related name
+
+this is a test
