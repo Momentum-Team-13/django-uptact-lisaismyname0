@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import RegexValidator
+from django.forms import BooleanField
 from localflavor.us.models import USStateField, USZipCodeField
 from django.utils import timezone
 from users.models import User
@@ -32,6 +33,7 @@ class Note(models.Model):
     text_field = models.CharField(max_length=255, null=True, blank=True)
     contact = models.ForeignKey(
         "Contact", on_delete=models.CASCADE, related_name="contact_notes", blank=True, null=True)
+    delete_button = models.BooleanField(null=True)
 
     def __str__(self):
         return f"{self.text_field}"

@@ -24,4 +24,5 @@ class NoteForm(forms.ModelForm):
         model = Note
         fields = [
             "text_field",
+            "delete_button",
         ]
