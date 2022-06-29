@@ -63,3 +63,10 @@ def add_note(request, pk):
         "form": form,
         "contact": contact
     })
+
+
+def remove_note(request, pk):
+    note = Note.objects.all()
+    if request.method == "POST":
+        note.delete()
+        return redirect(to="individual_contact")
