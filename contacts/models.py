@@ -34,7 +34,7 @@ class Note(models.Model):
         "Contact", on_delete=models.CASCADE, related_name="contact_notes", blank=True, null=True)
 
     def __str__(self):
-        return self.text_field
+        return f"{self.text_field}"
 
 
 class Favorite(models.Model):

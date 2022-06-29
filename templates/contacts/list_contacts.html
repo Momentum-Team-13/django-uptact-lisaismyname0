@@ -40,14 +40,6 @@
     </div>
     {% endif %}
 
-    {% if note %}
-    <div>Note</div>
-    {%for note in notes%}
-    <div> {{note.text_field}}</div>
-    {% endfor %}
-    {% endif %}
-
-
     <p>
       <a href="{% url 'edit_contact' pk=contact.pk %}">Edit Contact</a><br>
       <a class="red" href="{% url 'delete_contact' pk=contact.pk %}">Delete Contact</a>

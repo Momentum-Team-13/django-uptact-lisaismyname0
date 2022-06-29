@@ -49,15 +49,6 @@ def delete_contact(request, pk):
                   {"contact": contact})
 
 
-def show_contact(request, pk):
-    contact = get_object_or_404(Contact, pk=pk)
-    # went to the database and got a piece of data
-    notes = Note.objects.filter(contact=pk)
-
-    return render(request, "contacts/individual_contact.html", {"contact": contact, "notes": notes})
-    # now the context dictionary passes data to the template
-
-
 def add_note(request, pk):
     contact = get_object_or_404(Contact, pk=pk)
     if request.method == "GET":
@@ -65,6 +56,10 @@ def add_note(request, pk):
     else:
         form = NoteForm(data=request.POST)
         if form.is_valid():
-            new_note = form.save()
+            new_note = form.save(commit=False)
             new_note.contact = contact
-        return redirect(to="individual_contact", pk=pk)
+            new_note.save()
+    return render(request, "contacts/individual_contact.html", {
+        "form": form,
+        "contact": contact
+    })

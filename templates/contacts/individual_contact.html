@@ -33,17 +33,26 @@
         {% endif %}
 
         <div> Contact Note</div>
-        {%for note in contact.contact_notes.all %}
-        <p>{{note}</p>
+        {% for note in contact.contact_notes.all %}
+        <p>{{note}}</p>
         {% endfor %}
 
         <div>
-            <a href="{% url 'contact_note' pk=contact.pk %}">Add Contact Note</a><br>
             <a href="{% url 'edit_contact' pk=contact.pk %}">Edit Contact</a><br>
             <a class="red" href="{% url 'delete_contact' pk=contact.pk %}">Delete Contact</a>
         </div>
     </div>
-    {% endblock %}
 
-    {%block note%}
-    {%endblock%}
+    <h1>Here you can Add Note to Contact</h1>
+
+    <div>
+        <form action="{% url 'individual_contact' pk=contact.pk %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div>
+                <button type="submit">Add Note</button>
+            </div>
+        </form>
+    </div>
+
+    {% endblock %}

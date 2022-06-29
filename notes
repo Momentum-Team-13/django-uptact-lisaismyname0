@@ -3,24 +3,37 @@ activate a virtual environment that is specific to your project via the console 
 there is no init in our models because we inherit from models and which has a built in init and we just give it attributes
 
 ex: birthday = models.DateField(null=True, blank=True)
-we need both null = True and blank = True because one is for database and one is for the form. these fields by default are required (its telling the form & database that it's okay for it to be blank)
+we need both null = True and blank = True because one is for database and one is for the form. these fields by default are required(its telling the form & database that it's okay for it to be blank)
 
 i have a model that has a structure, i told the model which attributes i care about via the form field. we go to the view, the view says i have a form for that... i'm going to render this bit of html with this context which is the additional data that the page needs.
 
-{{form.as_p}} in add_contact.html shows up in the front end 
-- we start by looking at url patterns... we see which page the user is going to enter. the user is going to contacts.add which calls add_contact view 
+{{form.as_p}} in add_contact.html shows up in the front end
+- we start by looking at url patterns... we see which page the user is going to enter. the user is going to contacts.add which calls add_contact view
 
-SQL is the language that the database speaks. 
+SQL is the language that the database speaks.
 
-db.sqlite3 is a file that shows my database but without a tool that can read it, i can't access that file, which is why we might use tools like dbbrowser 
+db.sqlite3 is a file that shows my database but without a tool that can read it, i can't access that file, which is why we might use tools like dbbrowser
 
-https://github.com/Momentum-Team-13/notes/blob/main/pks_and_fks.md
-this explains the creation of foreign keys and the database 
+https: // github.com/Momentum-Team-13/notes/blob/main/pks_and_fks.md
+this explains the creation of foreign keys and the database
+
 
 class Favorite(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="favorites")
     contact = models.ForeignKey(
         Contact, on_delete=models.CASCADE, related_name="favorites")
+
+
 it will have a user field that will point to particular instanceof user model and there will be a table field that will point to a particular instance of table
 - this example was about connecting two different models together
+
+
+def show_contact(request, pk):
+    contact = get_object_or_404(Contact, pk=pk)
+    # went to the database and got a piece of data
+    notes = Note.objects.filter(contact=pk)
+
+    return render(request, "contacts/individual_contact.html", {"contact": contact, "notes": notes})
+    # now the context dictionary passes data to the template
+    # dont need line 35 because of the related name
