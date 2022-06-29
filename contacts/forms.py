@@ -16,6 +16,12 @@ class ContactForm(forms.ModelForm):
             'zip_code',
             'phone_number',
             'email',
-            'note',
         ]
 
+
+class NoteForm(forms.ModelForm):
+    class Meta:
+        model = Note
+        fields = [
+            "text_field"
+        ]

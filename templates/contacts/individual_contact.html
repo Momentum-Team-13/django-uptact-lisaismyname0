@@ -1,8 +1,11 @@
-<div>"Hello</div>
+{%extends "base.html"%}
+
 {% block content %}
-<div class="w-33 pa3">
-    <h2>{{ contact.name }}</h2>
+<h1>{{ contact.name }}</h2>
+
+    {%if contact.birthdate %}
     <h3>{{contact.birthday}}</h3>
+    {% endif %}
 
     <div class=" flex">
         <div class="pr2"><i class="icofont-location-pin"></i></div>
@@ -13,20 +16,33 @@
             {% endif %}
             {{ contact.city }}, {{ contact.state }} {{ contact.zip_code }}
         </div>
-    </div>
 
-    {% if contact.phone_number %}
-    <div class="flex">
-        <div class="pr2"><i class="icofont-phone"></i></div>
-        <div>{{ contact.phone_number }}</div>
-    </div>
-    {% endif %}
 
-    {% if contact.email %}
-    <div class="flex">
-        <div class="pr2"><i class="icofont-ui-email"></i></div>
-        <div>{{ contact.email }}</div>
+        {% if contact.phone_number %}
+        <div class="flex">
+            <div class="pr2"><i class="icofont-phone"></i></div>
+            <div>{{ contact.phone_number }}</div>
+        </div>
+        {% endif %}
+
+        {% if contact.email %}
+        <div class="flex">
+            <div class="pr2"><i class="icofont-ui-email"></i></div>
+            <div>{{ contact.email }}</div>
+        </div>
+        {% endif %}
+
+        {% if notes %}
+        <div> Contact Note</div>
+        {%for note in notes%}
+        <p>{{note.text_field}}</p>
+        {% endfor %}
+        {% endif %}
+
+        <p>
+            <a href="{% url 'contact_note' pk=contact.pk %}">Add Contact Note</a><br>
+            <a href="{% url 'edit_contact' pk=contact.pk %}">Edit Contact</a><br>
+            <a class="red" href="{% url 'delete_contact' pk=contact.pk %}">Delete Contact</a>
+        </p>
     </div>
-    {% endif %}
-</div>
-{% endblock %}
+    {% endblock %}

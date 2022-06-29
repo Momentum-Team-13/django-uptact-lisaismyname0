@@ -23,14 +23,18 @@ class Contact(models.Model):
     city = models.CharField(max_length=255, null=True, blank=True)
     state = USStateField(null=True, blank=True)
     zip_code = USZipCodeField(null=True, blank=True)
-    note = models.ForeignKey(
-        "Note", on_delete=models.CASCADE, related_name="contact_note", blank=True, null=True)
+
+    def __str__(self):
+        return self.name
 
 
 class Note(models.Model):
-    #text_field = USStateField(null=True, blank=True)
     text_field = models.CharField(max_length=255, null=True, blank=True)
-    #time_published = timezone.now()
+    contact = models.ForeignKey(
+        "Contact", on_delete=models.CASCADE, related_name="contact_note", blank=True, null=True)
+
+    def __str__(self):
+        return self.text_field
 
 
 class Favorite(models.Model):
