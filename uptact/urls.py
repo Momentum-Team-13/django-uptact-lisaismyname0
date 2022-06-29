@@ -30,6 +30,7 @@ urlpatterns = [
          name='delete_contact'),
     path('contacts/<int:pk>/', contacts_views.show_contact,
          name="individual_contact"),
+    # a better name for this would've been contact_detail
     path('contacts/<int:pk>/', contacts_views.add_note, name="contact_note"),
 ]
 

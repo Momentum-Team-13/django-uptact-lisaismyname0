@@ -31,7 +31,7 @@ class Contact(models.Model):
 class Note(models.Model):
     text_field = models.CharField(max_length=255, null=True, blank=True)
     contact = models.ForeignKey(
-        "Contact", on_delete=models.CASCADE, related_name="contact_note", blank=True, null=True)
+        "Contact", on_delete=models.CASCADE, related_name="contact_notes", blank=True, null=True)
 
     def __str__(self):
         return self.text_field

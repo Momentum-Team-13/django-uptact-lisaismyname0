@@ -32,18 +32,16 @@
         </div>
         {% endif %}
 
-        {% if notes %}
         <div> Contact Note</div>
-        {%for note in notes%}
-        <p>{{note.text_field}}</p>
+        {%for note in contact.contact_notes.all %}
+        <p>{{note}</p>
         {% endfor %}
-        {% endif %}
 
-        <p>
+        <div>
             <a href="{% url 'contact_note' pk=contact.pk %}">Add Contact Note</a><br>
             <a href="{% url 'edit_contact' pk=contact.pk %}">Edit Contact</a><br>
             <a class="red" href="{% url 'delete_contact' pk=contact.pk %}">Delete Contact</a>
-        </p>
+        </div>
     </div>
     {% endblock %}
 
