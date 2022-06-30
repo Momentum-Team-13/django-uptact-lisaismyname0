@@ -31,6 +31,9 @@ urlpatterns = [
     path('contacts/<int:pk>/', contacts_views.add_note,
          name="individual_contact"),
     # a better name for this would've been contact_detail
+    path('contacts/<int:pk>/', contacts_views.delete_note,
+         name="delete_note"),
+    # i can control click on my urls to see how things connect.
 ]
 
 if settings.DEBUG:

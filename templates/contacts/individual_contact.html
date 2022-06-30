@@ -35,7 +35,7 @@
         <div>
             <ul>Contact Notes</ul>
             {% for note in contact.contact_notes.all %}
-            <li>{{note}}</li>
+            <li>{{note}}<button type="submit">Remove Note</button></li>
             {% endfor %}
         </div>
 
@@ -52,7 +52,6 @@
             {% csrf_token %}
             {{ form.as_p }}
             <div>
-                <button type="submit">Add Note</button>
             </div>
         </form>
     </div>

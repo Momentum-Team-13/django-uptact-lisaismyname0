@@ -66,7 +66,8 @@ def add_note(request, pk):
 
 
 def remove_note(request, pk):
-    note = Note.objects.all()
+    note = get_object_or_404(Note, pk=pk)
+    contact_pk = note.contact.pk
     if request.method == "POST":
         note.delete()
-        return redirect(to="individual_contact")
+        return redirect(to="individual_contact", pk=contact_pk)
