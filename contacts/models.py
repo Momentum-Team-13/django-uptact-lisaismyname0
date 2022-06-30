@@ -30,10 +30,9 @@ class Contact(models.Model):
 
 
 class Note(models.Model):
-    text_field = models.CharField(max_length=255, null=True, blank=True)
+    text_field = models.CharField(max_length=255, null=True, blank=True,)
     contact = models.ForeignKey(
         "Contact", on_delete=models.CASCADE, related_name="contact_notes", blank=True, null=True)
-    delete_button = models.BooleanField(null=True)
 
     def __str__(self):
         return f"{self.text_field}"
